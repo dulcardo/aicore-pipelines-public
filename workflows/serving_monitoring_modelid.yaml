@@ -1,0 +1,51 @@
+apiVersion: ai.sap.com/v1alpha1
+kind: ServingTemplate
+metadata:
+  annotations:
+    scenarios.ai.sap.com/name: "MLOps public pipeline"
+    scenarios.ai.sap.com/description: "Introduction to docker pipeline"
+    executables.ai.sap.com/name: "monitor ScoringCode"
+    executables.ai.sap.com/description: "Executable description for scoring code"
+  labels:
+    ai.sap.com/version: "1.0"
+    scenarios.ai.sap.com/id: "test-scenario-id-123"
+  name: monitor-scoring-code-1
+
+spec:
+  inputs:
+    parameters:
+      - name: deploymentId
+        type: string
+      - name: modelId
+        type: string
+  template:
+    apiVersion: "serving.kserve.io/v1beta1"
+    metadata:
+      labels: |
+        ai.sap.com/resourcePlan: "starter"
+    spec: |
+      predictor:
+        minReplicas: 1
+        containers:
+        - name: kserve-container
+          image: docker.io/dulcardo/scoring-code:02
+          imagePullPolicy: Always
+          ports:
+           - containerPort: 9001
+             protocol: TCP
+          env:
+            - name: MLOPS_DEPLOYMENT_ID
+              value: "{{inputs.parameters.deploymentId}}"
+            - name: MLOPS_MODEL_ID
+              value: "{{inputs.parameters.modelId}}"
+            - name: DATAROBOT_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                    name: my-dr-secrets
+                    key: endpoint
+            - name: DATAROBOT_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                    name: my-dr-secrets
+                    key: token
+        timeout: 30
