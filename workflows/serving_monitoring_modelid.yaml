@@ -4,7 +4,7 @@ metadata:
   annotations:
     scenarios.ai.sap.com/name: "MLOps public pipeline"
     scenarios.ai.sap.com/description: "Introduction to docker pipeline"
-    executables.ai.sap.com/name: "monitor ScoringCode"
+    executables.ai.sap.com/name: "monitor-scoring-code"
     executables.ai.sap.com/description: "Executable description for scoring code"
   labels:
     ai.sap.com/version: "1.0"
