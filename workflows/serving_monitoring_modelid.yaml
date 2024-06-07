@@ -7,16 +7,16 @@ metadata:
     executables.ai.sap.com/name: "monitor-scoring-code"
     executables.ai.sap.com/description: "Executable description for scoring code"
   labels:
-    ai.sap.com/version: "1.0"
+    ai.sap.com/version: "2.0"
     scenarios.ai.sap.com/id: "test-scenario-id-123"
   name: monitor-scoring-code-1
 
 spec:
   inputs:
     parameters:
-      - name: deploymentId
+      - name: MLOPS_DEPLOYMENT_ID
         type: string
-      - name: modelId
+      - name: MLOPS_MODEL_ID
         type: string
   template:
     apiVersion: "serving.kserve.io/v1beta1"
@@ -35,17 +35,17 @@ spec:
              protocol: TCP
           env:
             - name: MLOPS_DEPLOYMENT_ID
-              value: "{{inputs.parameters.deploymentId}}"
+              value: "{{inputs.parameters.MLOPS_DEPLOYMENT_ID}}"
             - name: MLOPS_MODEL_ID
-              value: "{{inputs.parameters.modelId}}"
+              value: "{{inputs.parameters.MLOPS_MODEL_ID}}"
             - name: DATAROBOT_ENDPOINT
               valueFrom:
                 secretKeyRef:
-                    name: my-dr-secrets
-                    key: endpoint
+                    name: datarobot-secrets
+                    key: DATAROBOT_ENDPOINT
             - name: DATAROBOT_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                    name: my-dr-secrets
-                    key: token
+                    name: datarobot-secrets
+                    key: DATAROBOT_API_TOKEN
         timeout: 30
