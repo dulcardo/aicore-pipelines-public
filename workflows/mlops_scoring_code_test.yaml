@@ -1,0 +1,49 @@
+apiVersion: ai.sap.com/v1alpha1
+kind: ServingTemplate
+metadata:
+  annotations:
+    scenarios.ai.sap.com/name: "MLOps tests template"
+    executables.ai.sap.com/name: "mlops-scoring-code-test"
+  labels:
+    ai.sap.com/version: "v1"
+    scenarios.ai.sap.com/id: "mlops-scoring-code-test-scenario-v1"
+  name: mlops-scoring-code-test-executable-v1
+
+spec:
+  inputs:
+    parameters:
+      - name: MLOPS_DEPLOYMENT_ID
+        type: string
+      - name: MLOPS_MODEL_ID
+        type: string
+  template:
+    apiVersion: "serving.kserve.io/v1beta1"
+    metadata:
+      labels: |
+        ai.sap.com/resourcePlan: "starter"
+    spec: |
+      predictor:
+        minReplicas: 1
+        containers:
+        - name: kserve-container
+          image: docker.io/dulcardo/mlops-scoring-code-test:v1
+          imagePullPolicy: Always
+          ports:
+           - containerPort: 9001
+             protocol: TCP
+          env:
+            - name: MLOPS_DEPLOYMENT_ID
+              value: "{{inputs.parameters.MLOPS_DEPLOYMENT_ID}}"
+            - name: MLOPS_MODEL_ID
+              value: "{{inputs.parameters.MLOPS_MODEL_ID}}"
+            - name: DATAROBOT_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                    name: datarobot-secrets
+                    key: DATAROBOT_ENDPOINT
+            - name: DATAROBOT_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                    name: datarobot-secrets
+                    key: DATAROBOT_API_TOKEN
+        timeout: 30
