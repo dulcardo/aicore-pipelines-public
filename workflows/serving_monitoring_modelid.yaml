@@ -22,7 +22,8 @@ spec:
         type: string
       - name: MIN_REPLICAS
         type: string
-        value: 1
+        default: abc
+        value: bcd
   template:
     apiVersion: "serving.kserve.io/v1beta1"
     metadata:
