@@ -21,7 +21,7 @@ spec:
       - name: IMAGE_BASE
         type: string
       - name: MIN_REPLICAS
-        type: integer
+        type: string
         value: 1
   template:
     apiVersion: "serving.kserve.io/v1beta1"
