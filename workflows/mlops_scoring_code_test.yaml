@@ -5,7 +5,7 @@ metadata:
     scenarios.ai.sap.com/name: "MLOps tests template"
     executables.ai.sap.com/name: "mlops-scoring-code-test"
   labels:
-    ai.sap.com/version: "v3"
+    ai.sap.com/version: "v1"
     scenarios.ai.sap.com/id: "mlops-scoring-code-test-scenario-v1"
   name: mlops-scoring-code-test-executable-v1
 
@@ -39,7 +39,7 @@ spec:
           - name: "{{inputs.parameters.MLOPS_REGISTRY_SECRETS_NAME}}"
         minReplicas: 1
         containers:
-        - name: mlops-scoring-code-test
+        - name: kserve-container
           image: "{{inputs.parameters.MLOPS_IMAGE_NAME}}"
           imagePullPolicy: Always
           ports:

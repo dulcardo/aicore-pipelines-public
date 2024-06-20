@@ -23,7 +23,7 @@ spec:
         default: docker.io/dulcardo/scoring-code:02
       - name: MLOPS_REGISTRY_SECRETS_NAME
         type: string
-        default: image-registry-secrets
+        default: datarobot-registry-secrets
       - name: MLOPS_SECRETS_NAME
         type: string
         default: datarobot-secrets
