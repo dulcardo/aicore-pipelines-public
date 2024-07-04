@@ -7,7 +7,7 @@ metadata:
     executables.ai.sap.com/name: "monitor-scoring-code"
     executables.ai.sap.com/description: "Executable description for scoring code"
   labels:
-    ai.sap.com/version: "9.0"
+    ai.sap.com/version: "10.0"
     scenarios.ai.sap.com/id: "test-scenario-id-123"
   name: monitor-scoring-code-1
 
@@ -17,6 +17,14 @@ spec:
       - name: MLOPS_DEPLOYMENT_ID
         type: string
       - name: MLOPS_MODEL_ID
+        type: string
+      - name: MLOPS_MODEL_PACKAGE_ID
+        type: string
+      - name: TARGET_TYPE
+        type: string
+      - name: POSITIVE_CLASS_LABEL
+        type: string
+      - name: NEGATIVE_CLASS_LABEL
         type: string
       - name: MLOPS_IMAGE_NAME
         type: string
@@ -52,6 +60,14 @@ spec:
               value: "{{inputs.parameters.MLOPS_DEPLOYMENT_ID}}"
             - name: MLOPS_MODEL_ID
               value: "{{inputs.parameters.MLOPS_MODEL_ID}}"
+            - name: MLOPS_MODEL_PACKAGE_ID
+              value: "{{inputs.parameters.MLOPS_MODEL_PACKAGE_ID}}"
+            - name: TARGET_TYPE
+              value: "{{inputs.parameters.TARGET_TYPE}}"
+            - name: POSITIVE_CLASS_LABEL
+              value: "{{inputs.parameters.POSITIVE_CLASS_LABEL}}"
+            - name: NEGATIVE_CLASS_LABEL
+              value: "{{inputs.parameters.NEGATIVE_CLASS_LABEL}}"
             - name: DATAROBOT_ENDPOINT
               valueFrom:
                 secretKeyRef:
