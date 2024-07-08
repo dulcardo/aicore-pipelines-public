@@ -7,7 +7,7 @@ metadata:
     executables.ai.sap.com/name: "monitor-scoring-code"
     executables.ai.sap.com/description: "Executable description for scoring code"
   labels:
-    ai.sap.com/version: "10.0"
+    ai.sap.com/version: "11.0"
     scenarios.ai.sap.com/id: "test-scenario-id-123"
   name: monitor-scoring-code-1
 
@@ -25,6 +25,12 @@ spec:
       - name: POSITIVE_CLASS_LABEL
         type: string
       - name: NEGATIVE_CLASS_LABEL
+        type: string
+      - name: CLASS_LABELS
+        type: string
+      - name: MONITOR
+        type: string
+      - name: MONITOR_SETTINGS
         type: string
       - name: MLOPS_IMAGE_NAME
         type: string
@@ -68,6 +74,12 @@ spec:
               value: "{{inputs.parameters.POSITIVE_CLASS_LABEL}}"
             - name: NEGATIVE_CLASS_LABEL
               value: "{{inputs.parameters.NEGATIVE_CLASS_LABEL}}"
+            - name: CLASS_LABELS
+              value: "{{inputs.parameters.CLASS_LABELS}}"
+            - name: MONITOR
+              value: "{{inputs.parameters.MONITOR}}"
+            - name: MONITOR_SETTINGS
+              value: "{{inputs.parameters.MONITOR_SETTINGS}}"
             - name: DATAROBOT_ENDPOINT
               valueFrom:
                 secretKeyRef:
