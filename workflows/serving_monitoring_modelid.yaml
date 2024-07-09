@@ -7,7 +7,7 @@ metadata:
     executables.ai.sap.com/name: "monitor-scoring-code"
     executables.ai.sap.com/description: "Executable description for scoring code"
   labels:
-    ai.sap.com/version: "11.0"
+    ai.sap.com/version: "12.0"
     scenarios.ai.sap.com/id: "test-scenario-id-123"
   name: monitor-scoring-code-1
 
@@ -62,9 +62,9 @@ spec:
            - containerPort: 9001
              protocol: TCP
           env:
-            - name: MLOPS_DEPLOYMENT_ID
+            - name: DEPLOYMENT_ID
               value: "{{inputs.parameters.MLOPS_DEPLOYMENT_ID}}"
-            - name: MLOPS_MODEL_ID
+            - name: MODEL_ID
               value: "{{inputs.parameters.MLOPS_MODEL_ID}}"
             - name: MLOPS_MODEL_PACKAGE_ID
               value: "{{inputs.parameters.MLOPS_MODEL_PACKAGE_ID}}"
