@@ -7,7 +7,7 @@ metadata:
     executables.ai.sap.com/name: "monitor-scoring-code"
     executables.ai.sap.com/description: "Executable description for scoring code"
   labels:
-    ai.sap.com/version: "14.0"
+    ai.sap.com/version: "15.0"
     scenarios.ai.sap.com/id: "test-scenario-id-123"
   name: monitor-scoring-code-1
 
@@ -34,6 +34,8 @@ spec:
         type: string
       - name: MLOPS_IMAGE_NAME
         type: string
+      - name: MLOPS_CMD_ARGS
+        type: string
         default: docker.io/dulcardo/scoring-code:02
       - name: MLOPS_REGISTRY_SECRETS_NAME
         type: string
@@ -58,6 +60,7 @@ spec:
         - name: kserve-container
           image: "{{inputs.parameters.MLOPS_IMAGE_NAME}}"
           imagePullPolicy: Always
+          args: "{{inputs.parameters.MLOPS_CMD_ARGS}}"
           ports:
            - containerPort: 9001
              protocol: TCP
