@@ -60,7 +60,6 @@ spec:
         - name: kserve-container
           image: "{{inputs.parameters.MLOPS_IMAGE_NAME}}"
           imagePullPolicy: Always
-          args: "{{inputs.parameters.MLOPS_CMD_ARGS}}"
           ports:
            - containerPort: 9001
              protocol: TCP
@@ -79,6 +78,8 @@ spec:
               value: "{{inputs.parameters.NEGATIVE_CLASS_LABEL}}"
             - name: CLASS_LABELS
               value: "{{inputs.parameters.CLASS_LABELS}}"
+            - name: MLOPS_CMD_ARGS
+              value: "{{inputs.parameters.MLOPS_CMD_ARGS}}"
             - name: MONITOR
               value: "{{inputs.parameters.MONITOR}}"
             - name: MONITOR_SETTINGS
