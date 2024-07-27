@@ -74,8 +74,6 @@ spec:
               value: "{{inputs.parameters.NEGATIVE_CLASS_LABEL}}"
             - name: CLASS_LABELS
               value: "{{inputs.parameters.CLASS_LABELS}}"
-            - name: MLOPS_CMD_ARGS
-              value: "{{inputs.parameters.MLOPS_CMD_ARGS}}"
             - name: MONITOR
               value: "{{inputs.parameters.MONITOR}}"
             - name: MONITOR_SETTINGS
