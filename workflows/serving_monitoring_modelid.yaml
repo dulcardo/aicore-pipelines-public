@@ -2,14 +2,13 @@ apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
   annotations:
-    scenarios.ai.sap.com/name: "MLOps public pipeline"
-    scenarios.ai.sap.com/description: "Introduction to docker pipeline"
-    executables.ai.sap.com/name: "monitor-scoring-code"
-    executables.ai.sap.com/description: "Executable description for scoring code"
+    scenarios.ai.sap.com/name: "DataRobot MLOps public pipeline"
+    scenarios.ai.sap.com/description: "DataRobot MLOps scoring code serving and monitoring pipeline"
+    executables.ai.sap.com/name: "mlops-monitoring-scoring-code"
   labels:
-    ai.sap.com/version: "17.0"
-    scenarios.ai.sap.com/id: "test-scenario-id-123"
-  name: monitor-scoring-code-1
+    ai.sap.com/version: "1.0"
+    scenarios.ai.sap.com/id: "mlops-scoring-code-monitoring"
+  name: monitor-scoring-executable-1.0
 
 spec:
   inputs:
@@ -36,7 +35,6 @@ spec:
         type: string
       - name: MLOPS_REGISTRY_SECRETS_NAME
         type: string
-        default:
       - name: MLOPS_SECRETS_NAME
         type: string
         default: datarobot-secrets
